@@ -11,6 +11,9 @@ samples and columns as genes. }
 
 \item{modOrOut}{This is the output from the modOr (Module-Oriented) function in this package.}
 }
+
+\item{ord}{This determines the order of the samples in the plots. If no argument is supplied or if ord=="intensity" the order will be based on module eigengene intensity. If ord=="alpha", the order will be alphabetical by sample name. For a custom order, supply a concatenated vector of names that match your samples. All samples must be given a location and all spelling and spacing must be copied perfectly or the function is likely to fail. If providing custom order, write it very carefully. }
+
 \value{
 A list the same length as the number of modules. If a module has no assigned genes (and thus no expression data), it will have a zero instead of a plot in the output list.
 }

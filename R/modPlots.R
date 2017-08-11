@@ -1,5 +1,20 @@
 
-modPlots <- function(expr, modOrOut){
+modPlots <- function(expr, modOrOut, ord){
+
+if(missing(ord) | ord == "intensity"){
+  flag <- 0 #intensity-wise
+  ord <- 0
+  }
+if(ord=="alpha") {
+  flag <- 1
+  }
+if(length(ord)==ncol(exportable)) {
+  flag <- 2
+  }
+if(flag != (0 | 1 | 2)) {
+  flag <- 0
+  }
+
 exportable <- modOrOut
 indent = 0
 nPC <- 1
@@ -67,11 +82,13 @@ col <- k
 row1 <- row.names(PrinComps)#x axis
 row2 <- PrinComps[,col]
 rrs <- data.frame(row1, row2)
-rrs_s <- rrs[order(rrs$row2),]
+if(flag==0) { rrs_s <- rrs[order(rrs$row2),]; ord <- rrs_s$row1 } #ME-ordered
+if(flag==1) { rrs_s <- rrs; ord <- rrs$row1} #alphabetical
+if(flag==2) { rrs_s <- rrs; } #user defined
 if(sum(rrs$row2) != 0){
 p <-ggplot(rrs_s, aes(row1, row2))
 x <- p +geom_bar(stat = "identity", fill = "navy blue") +theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ggtitle(paste("Modular Relative Expression", modlevels[col], sep = "--")) +
-  ylab("Expression of genes in module") + xlab("Sample") + scale_x_discrete(limits = rrs_s$row1)
+  ylab("Expression of genes in module") + xlab("Sample") + scale_x_discrete(limits = ord)
 plotOutput[[k]] <- x
 } else {plotOutput[[k]] <- 0}
 }
