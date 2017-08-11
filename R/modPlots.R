@@ -30,7 +30,7 @@ validAEs = rep(FALSE, length(modlevels))
 isPC = rep(TRUE, length(modlevels))
 isHub = rep(FALSE, length(modlevels))
 validColors = colnames(exportable)
-names(PrinComps) = paste(moduleColor.getMEprefix(), modlevels, sep = "")
+names(PrinComps) = paste(WGCNA::moduleColor.getMEprefix(), modlevels, sep = "")
 names(averExpr) = paste("AE", modlevels, sep = "")
 
 for (i in c(1:length(modlevels))) {
@@ -85,10 +85,10 @@ rrs <- data.frame(row1, row2)
 if(flag==0) { rrs_s <- rrs[order(rrs$row2),]; ord <- rrs_s$row1 } #ME-ordered
 if(flag==1) { rrs_s <- rrs; ord <- rrs$row1} #alphabetical
 if(flag==2) { rrs_s <- rrs; } #user defined
-if(sum(rrs$row2) != 0){
-p <-ggplot(rrs_s, aes(row1, row2))
-x <- p +geom_bar(stat = "identity", fill = "navy blue") +theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ggtitle(paste("Modular Relative Expression", modlevels[col], sep = "--")) +
-  ylab("Expression of genes in module") + xlab("Sample") + scale_x_discrete(limits = ord)
+if(rrs$row2[1] != 0){
+p <-ggplot2::ggplot(rrs_s, ggplot2::aes(row1, row2))
+x <- p + ggplot2::geom_bar(stat = "identity", fill = "navy blue") +ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, hjust = 1)) + ggplot2::ggtitle(paste("Modular Relative Expression", modlevels[col], sep = "--")) +
+  ggplot2::ylab("Expression of genes in module") + ggplot2::xlab("Sample") + ggplot2::scale_x_discrete(limits = ord)
 plotOutput[[k]] <- x
 } else {plotOutput[[k]] <- 0}
 }
