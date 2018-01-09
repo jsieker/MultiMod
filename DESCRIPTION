@@ -1,12 +1,13 @@
 Package: MultiMod
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Expands WGCNA Clustering Analysis by Introducing a Pathway for Multiple Module Gene Assignment 
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Jeremy Sieker, Sohyon Lee, Kristin Baldwin
+Maintainer: Jeremy Sieker <jsieker@ucsd.edu>
+Description: WGCNA Gene Clustering Analysis makes the assumption that each gene under consideration is only
+properly assignable to one module. This package re-engineers the WGCNA analytical protocol to bypass this faulty assumption.
+With this method alteration, more accurate gene clustering maps can now be developed.
+License: GPL-1
 Imports: WGCNA, ggplot2
 Encoding: UTF-8
 LazyData: true
